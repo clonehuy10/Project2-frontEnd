@@ -12,6 +12,44 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <h1>Browser Template</h1>
+      <p id="message"></p>
+      <div>
+        <form id="sign-up-form">
+          <h3>Sign Up</h3>
+          <label for="sign-up-email">Email</label>
+          <input class="input" id="sign-up-email" type="email" placeholder="example@email.com" name="credentials[email]">
+          <label for="sign-up-password">Password</label>
+          <input class="input" id="sign-up-password" type="password" placeholder="********" name="credentials[password]">
+          <label for="password-confirmation">Password Comfirmation</label>
+          <input class="input" id="password-confirmation" type="password" placeholder="********" name="credentials[password_confirmation]">
+          <input type="submit" value="Sign Up">
+        </form>
+      </div>
+
+      <div>
+        <form id="sign-in-form">
+          <h3>Sign In</h3>
+          <label for="sign-in-email">Email</label>
+          <input class="input" id="sign-in-email" type="email" placeholder="example@email.com" name="credentials[email]">
+          <label for="sign-in-password">Password</label>
+          <input class="input" id="sign-in-password" type="password" placeholder="********" name="credentials[password]">
+          <input type="submit" value="Sign In">
+        </form>
+      </div>
+
+      <div>
+        <form id="change-password">
+          <h3>Change Password</h3>
+          <label for="old-password">Old Password</label>
+          <input class="input" id="old-password" type="password" placeholder="********" name="passwords[old]">
+          <label for="new-password">New Password</label>
+          <input class="input" id="new-password" type="password" placeholder="********" name="passwords[new]">
+          <input type="submit" value="Change Password">
+        </form>
+      </div>
+
+      <div id="button">
+          <button id="sign-out" type="button">Sign Out</button>
+      </div>
     </body>
 </html>
