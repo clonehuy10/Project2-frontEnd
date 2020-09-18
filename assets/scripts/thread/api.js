@@ -24,8 +24,35 @@ const createThread = function (data) {
     }
   })
 }
+const viewThread = function () {
+  return $.ajax({
+    url: config.apiUrl + '/threads/' + store.threadId,
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+const createComment = function (data, threadId) {
+  return $.ajax({
+    url: config.apiUrl + '/comments',
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    },
+    data: {
+      comment: {
+        content: data.content,
+        owner: store.user._id,
+        threadId: store.threadId
+      }
+    }
+  })
+}
 
 module.exports = {
   getAll,
-  createThread
+  createThread,
+  viewThread,
+  createComment
 }

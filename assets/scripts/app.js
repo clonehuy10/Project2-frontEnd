@@ -14,4 +14,6 @@ $(() => {
   $('#change-password').on('submit', userEvents.onChangePassword)
   $('#sign-out').on('click', userEvents.onSignOut)
   $('#thread-create').on('submit', threadEvents.onCreateThread)
+  $('.threads').on('click', '.thread-title', threadEvents.onViewThread)
+  $('#comment-create').on('submit', threadEvents.onCreateComment)
 })
