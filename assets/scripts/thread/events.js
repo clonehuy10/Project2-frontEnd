@@ -11,8 +11,7 @@ const getAllThreads = function () {
 }
 const onCreateThread = function (event) {
   event.preventDefault()
-  const form = event.target
-  const data = getFormFields(form)
+  const data = getFormFields(event.target)
 
   api.createThread(data)
     .then(ui.onCreateThreadSuccess)
@@ -35,9 +34,55 @@ const onCreateComment = function (event) {
     .catch(ui.onCreateCommentFailure)
 }
 
+const onEditThreadButton = function (event) {
+  event.preventDefault()
+}
+const onEditThread = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+
+  api.editThread(data)
+    .then(ui.onEditThreadSuccess)
+    .catch(ui.onEditThreadFailure)
+}
+const onEditCommentButton = function (event) {
+  event.preventDefault()
+  store.commentId = event.target.classList.value
+}
+const onEditComment = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+
+  api.editComment(data)
+    .then(ui.onEditCommentSuccess)
+    .catch(ui.onEditCommentFailure)
+}
+
+const onDeleteThread = function (event) {
+  event.preventDefault()
+
+  api.deleteThread()
+    .then(ui.onDeleteThreadSuccess)
+    .catch(ui.onDeleteThreadFailure)
+}
+const onDeleteComment = function (event) {
+  event.preventDefault()
+  store.commentId = event.target.classList.value
+
+  api.deleteComment()
+    .then(ui.onDeleteCommentSuccess)
+    .catch(ui.onDeleteCommentFailure)
+}
+
 module.exports = {
   getAllThreads,
   onCreateThread,
   onViewThread,
-  onCreateComment
+  onCreateComment,
+  onEditThreadButton,
+  onEditThread,
+  onEditCommentButton,
+  onEditComment,
+  onDeleteThread,
+  onDeleteComment
 }

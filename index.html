@@ -12,50 +12,65 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <!-- Message -->
-      <p id="message"></p>
-      <!-- Sign up -->
-      <div>
-        <form id="sign-up-form">
-          <h3>Sign Up</h3>
-          <label for="sign-up-email">Email</label>
-          <input class="input" id="sign-up-email" type="email" placeholder="example@email.com" name="credentials[email]">
-          <label for="sign-up-password">Password</label>
-          <input class="input" id="sign-up-password" type="password" placeholder="********" name="credentials[password]">
-          <label for="password-confirmation">Password Comfirmation</label>
-          <input class="input" id="password-confirmation" type="password" placeholder="********" name="credentials[password_confirmation]">
-          <input type="submit" value="Sign Up">
-        </form>
-      </div>
-      <!-- Sign in -->
-      <div>
-        <form id="sign-in-form">
-          <h3>Sign In</h3>
-          <label for="sign-in-email">Email</label>
-          <input class="input" id="sign-in-email" type="email" placeholder="example@email.com" name="credentials[email]">
-          <label for="sign-in-password">Password</label>
-          <input class="input" id="sign-in-password" type="password" placeholder="********" name="credentials[password]">
-          <input type="submit" value="Sign In">
-        </form>
-      </div>
-      <!-- Change password -->
-      <div>
-        <form id="change-password">
-          <h3>Change Password</h3>
-          <label for="old-password">Old Password</label>
-          <input class="input" id="old-password" type="password" placeholder="********" name="passwords[old]">
-          <label for="new-password">New Password</label>
-          <input class="input" id="new-password" type="password" placeholder="********" name="passwords[new]">
-          <input type="submit" value="Change Password">
-        </form>
-      </div>
-      <!-- Button -->
-      <div id="button">
-          <button id="sign-out" type="button">Sign Out</button>
+      <section class="container">
+        <!-- ================== Top ================== -->
+        <div class="dropdown">
+          <button class="dropdown-toggle float-right btn btn-default setting" type="button" data-toggle="dropdown">Setting</button>
+          <ul class="dropdown-menu">
+
+            <!-- ================== Change password ================== -->
+            <li><button type="button" class="btn btn-default" data-toggle="modal" data-target=".change-password-box">Change-Password</button></li>
+
+            <!-- ================== Sign out ================== -->
+            <li><button type="button" class="btn btn-default" id="sign-out">Sign Out</button></li>
+          </ul>
+        </div>
+
+        <img src="./image/logo.png">
+
+        <p id="message"></p>
+      </section>
+
+      <!-- ================== Sign in/Sign up forms ================== -->
+      <section class="container-fluid">
+        <div class="row form">
+          <!-- ================== Sign up ================== -->
+          <div class="col-xs-5 form sign-up-box">
+            <form class="single-form" id="sign-up-form">
+              <h3>Sign Up</h3>
+              <label for="sign-up-email">Email</label><br>
+              <input class="input" id="sign-up-email" type="email" placeholder="example@email.com" name="credentials[email]"><br>
+              <label for="sign-up-password">Password</label><br>
+              <input class="input" id="sign-up-password" type="password" placeholder="********" name="credentials[password]"><br>
+              <label for="password-confirmation">Password Comfirmation</label><br>
+              <input class="input" id="password-confirmation" type="password" placeholder="********" name="credentials[password_confirmation]"><br><br>
+              <input type="submit" value="Sign Up">
+            </form>
+          </div>
+          <!-- ================== Sign in ================== -->
+          <div class="col-xs-5 form sign-in-box">
+            <form class="single-form" id="sign-in-form">
+              <h3>Sign In</h3>
+              <label for="sign-in-email">Email</label><br>
+              <input class="input" id="sign-in-email" type="email" placeholder="example@email.com" name="credentials[email]"><br>
+              <label for="sign-in-password">Password</label><br>
+              <input class="input" id="sign-in-password" type="password" placeholder="********" name="credentials[password]"><br><br>
+              <input type="submit" value="Sign In">
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <div class="container border">
+        <!-- ================== List of threads ================== -->
+        <div class="threads"></div>
+
+        <!-- ================== Single thread with comments ================== -->
+        <div class="single-thread"></div>
       </div>
 
-      <!-- Create a thread -->
-      <div>
+      <!-- ================== Create a thread ================== -->
+      <div class="new-thread">
         <form id="thread-create">
           <label for="thread-title">Title</label><br>
           <input class="input" id="thread-title" type="text" name="title"><br>
@@ -64,17 +79,74 @@
           <input type="submit" value="Post">
         </form>
       </div>
-      <!-- Create a comment -->
-      <div>
+
+      <!-- ================== Create a comment ================== -->
+      <div class="new-comment">
         <form id="comment-create">
           <label for="comment-content">Add a comment</label><br>
           <input class="input" id="comment-content" type="text" name="content"><br>
           <input type="submit" value="Post">
         </form>
       </div>
-      <!-- List of threads -->
-      <div class="threads"></div>
-      <!-- Single thread with comments -->
-      <div class="single-thread"></div>
+
+      <!-- ================== Edit Boxs ================== -->
+      <div class="edit-box">
+        <!-- Edit box for thread-->
+        <form id="edit-thread">
+          <label for="thread-title">Title</label><br>
+          <input class="input" id="eidt-thread-title" type="text" name="title"><br>
+          <label for="thread-content">Content</label><br>
+          <input class="input" id="edit-thread-content" type="text" name="content"><br>
+          <input type="submit" value="Post">
+        </form>
+        <!-- Edit box for comment-->
+        <form id="edit-comment">
+          <label for="comment-content">Add a comment</label><br>
+          <input class="input" id="edit-comment-content" type="text" name="content"><br>
+          <input type="submit" value="Post">
+        </form>
+      </div>
+
+      <!-- ================== Modals ================== -->
+      <!-- Modal for change password -->
+      <div class="modal fade change-password-box" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Change Password</h4>
+              <button type="button" class="close" data-dismiss="modal">x</button>
+            </div>
+            <form id="change-password">
+              <div class="modal-body">
+                <label for="old-password">Old Password</label><br>
+                <input class="input" id="old-password" type="password" placeholder="********" name="passwords[old]"><br>
+                <label for="new-password">New Password</label><br>
+                <input class="input" id="new-password" type="password" placeholder="********" name="passwords[new]">
+              </div>
+              <div class="modal-footer">
+                <input type="submit" value="Change Password" data-toggle="modal" data-target=".change-password-message">
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Modal for message of change password -->
+      <div class="modal fade change-password-message" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body" id="message-change-password"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </body>
 </html>
