@@ -34,15 +34,14 @@
         <p class="text-white" id="message"></p>
 
         <!-- Create a thread -->
-        <div class="center-button row">
-          <button type="button" class="btn btn-secondary new-thread" data-toggle="modal" data-target="#create-a-thread">Create your story</button>
+        <div class="move-button row">
+          <button type="button" class="btn btn-info new-thread" data-toggle="modal" data-target="#create-a-thread">Create your story</button>
         </div>
 
-        <!-- Create a comment -->
-        <button type="button" class="btn btn-secondary new-comment" data-toggle="modal" data-target="#create-a-comment">Comment</button>
-
         <!-- Back to list of threads -->
-        <button type="button" id="go-back">Back</button>
+        <div class="move-button row">
+          <button type="button" class="btn btn-info" id="go-back">Back</button>
+        </div>
       </section>
 
       <!-- ================== Sign in/Sign up forms ================== -->
@@ -84,6 +83,14 @@
         <!-- ================== Single thread with comments ================== -->
         <div class="single-thread chat-box"></div>
       </div>
+
+      <!-- ================== Bottom ================== -->
+      <section class="container">
+        <!-- Create a comment -->
+        <div class="move-button row">
+          <button type="button" class="btn btn-info new-comment" data-toggle="modal" data-target="#create-a-comment">Comment</button>
+        </div>
+      </section>
 
       <!-- ================== Modals ================== -->
       <!-- Modal for message -->
