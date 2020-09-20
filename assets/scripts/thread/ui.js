@@ -1,11 +1,11 @@
 'use strict'
 const store = require('./../store')
 const api = require('./api')
-const pagination = require('./../pagination/pagination')
+// const pagination = require('./../pagination/pagination')
 
 // show all thread on sign in
 const onGetAllSuccess = function (data) {
-  pagination.buildPagination(data.threads)
+  // pagination.buildPagination(data.threads)
   let display = ''
   data.threads.forEach(thread => {
     const time = thread.createdAt.slice(0, 10)
@@ -28,13 +28,14 @@ const onViewTheardSuccess = function (data) {
   const thread = data.thread
   // get the topic
   let topic = (`
+    <h3 class='thread-title text-white'>${thread.title}</h3>
     <li class="list-group-item border border-info">
-      <h4 class='thread-title'>${thread.title}</h4>
-    </li>
-    <li class="list-group-item border border-info">
+      <p class='thread-owner'>${thread.owner.email}</p>
       <p class='thread-content'>${thread.content}</p><br>
-      <button type="button" class="edit-thread-button" data-toggle="modal" data-target="#edit-a-thread">Edit</button>
-      <button type="button" class="delete-thread">Delete</button>
+      <div class="btn-group float-right">
+        <button type="button" class="btn btn-outline-primary edit-thread-button" data-toggle="modal" data-target="#edit-a-thread">Edit</button>
+        <button type="button" class="btn btn-outline-danger delete-thread">Delete</button>
+      </div>
     </li>
     `)
 
@@ -46,8 +47,10 @@ const onViewTheardSuccess = function (data) {
       <li class="list-group-item border border-info">
         <p class='comment-owner'>${comment.owner.email}</p>
         <p class='comment-content'>${comment.content}</p>
-        <button type="button" class="${comment._id}" id="edit-comment-button" data-toggle="modal" data-target="#edit-a-comment">Edit</button>
-        <button type="button" class="${comment._id}" id="delete-comment-button">Delete</button>
+        <div class="btn-group float-right">
+          <button type="button" class="btn btn-outline-primary edit-comment-button" value="${comment._id}" data-toggle="modal" data-target="#edit-a-comment">Edit</button>
+          <button type="button" class="btn btn-outline-danger delete-comment-button" value="${comment._id}">Delete</button>
+        </div>
       </li>
       `)
     comments = comments + line

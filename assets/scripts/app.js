@@ -28,10 +28,10 @@ $(() => {
 
   $('.single-thread').on('click', '.edit-thread', threadEvents.onEditThreadButton)
   $('#edit-thread').on('submit', threadEvents.onEditThread)
-  $('.single-thread').on('click', '#edit-comment-button', threadEvents.onEditCommentButton)
+  $('.single-thread').on('click', '.edit-comment-button', threadEvents.onEditCommentButton)
   $('#edit-comment').on('submit', threadEvents.onEditComment)
 
   $('.single-thread').on('click', '.delete-thread', threadEvents.onDeleteThread)
-  $('.single-thread').on('click', '#delete-comment-button', threadEvents.onDeleteComment)
+  $('.single-thread').on('click', '.delete-comment-button', threadEvents.onDeleteComment)
   $('#go-back').on('click', threadEvents.onBack)
 })
