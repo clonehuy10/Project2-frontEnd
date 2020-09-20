@@ -9,13 +9,12 @@ const userEvents = require('./auth/events')
 const threadEvents = require('./thread/events')
 
 // hide on load
-$('.setting').hide()
+// $('.setting').hide()
 $('.threads').hide()
 $('.single-thread').hide()
 $('.new-thread').hide()
 $('.new-comment').hide()
-$('#edit-thread').hide()
-$('#edit-comment').hide()
+$('#go-back').hide()
 
 $(() => {
   $('#sign-up-form').on('submit', userEvents.onSignUp)
@@ -34,4 +33,5 @@ $(() => {
 
   $('.single-thread').on('click', '.delete-thread', threadEvents.onDeleteThread)
   $('.single-thread').on('click', '#delete-comment-button', threadEvents.onDeleteComment)
+  $('#go-back').on('click', threadEvents.onBack)
 })

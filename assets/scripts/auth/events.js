@@ -26,6 +26,7 @@ const onSignIn = function (event) {
 
 const onChangePassword = function (event) {
   event.preventDefault()
+  $('#change-password-box').modal('hide')
   const form = event.target
   const data = getFormFields(form)
 

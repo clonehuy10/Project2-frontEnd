@@ -23,6 +23,7 @@ const onSignInSuccess = function (response) {
   $('.sign-in-box').hide()
   $('.setting').show()
   $('.threads').show()
+  $('.new-thread').show()
 }
 const onSignInFailure = function () {
   $('#message').text('Sign in failed, please try again')
@@ -31,11 +32,11 @@ const onSignInFailure = function () {
 
 // Change password
 const onChangeSuccess = function () {
-  $('#message-change-password').text('Changed password successfully')
+  $('#message-in-modal').text('Changed password successfully')
   $('#change-password').trigger('reset')
 }
 const onChangeFailure = function () {
-  $('#message-change-password').text('Change password failed, please try again')
+  $('#message-in-modal').text('Change password failed, please try again')
   $('#change-password').trigger('reset')
 }
 
@@ -50,6 +51,7 @@ const onSignOutSuccess = function () {
   $('.sign-in-box').show()
   $('.setting').hide()
   $('.threads').hide()
+  $('.new-thread').hide()
 }
 const onSignOutFailure = function () {
   $('#message').text('Failed to sign out!!!!')

@@ -11,6 +11,8 @@ const getAllThreads = function () {
 }
 const onCreateThread = function (event) {
   event.preventDefault()
+  $('#create-a-thread').modal('hide')
+  $('#message').text('')
   const data = getFormFields(event.target)
 
   api.createThread(data)
@@ -27,6 +29,7 @@ const onViewThread = function (event) {
 }
 const onCreateComment = function (event) {
   event.preventDefault()
+  $('#create-a-comment').modal('hide')
   const data = getFormFields(event.target)
 
   api.createComment(data)
@@ -39,6 +42,7 @@ const onEditThreadButton = function (event) {
 }
 const onEditThread = function (event) {
   event.preventDefault()
+  $('#edit-a-thread').modal('hide')
   const data = getFormFields(event.target)
 
   api.editThread(data)
@@ -51,6 +55,7 @@ const onEditCommentButton = function (event) {
 }
 const onEditComment = function (event) {
   event.preventDefault()
+  $('#edit-a-comment').modal('hide')
   const data = getFormFields(event.target)
 
   api.editComment(data)
@@ -74,6 +79,11 @@ const onDeleteComment = function (event) {
     .catch(ui.onDeleteCommentFailure)
 }
 
+const onBack = function (event) {
+  event.preventDefault()
+  ui.onBackSuccess()
+}
+
 module.exports = {
   getAllThreads,
   onCreateThread,
@@ -84,5 +94,6 @@ module.exports = {
   onEditCommentButton,
   onEditComment,
   onDeleteThread,
-  onDeleteComment
+  onDeleteComment,
+  onBack
 }

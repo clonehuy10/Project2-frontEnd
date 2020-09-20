@@ -28,7 +28,7 @@ const onViewTheardSuccess = function (data) {
   let topic = (`
     <p class='thread-title'>${thread.title}</p>
     <p class='thread-content'>${thread.content}</p>
-    <button type="button" class="edit-thread">Edit</button>
+    <button type="button" class="edit-thread-button" data-toggle="modal" data-target="#edit-a-thread">Edit</button>
     <button type="button" class="delete-thread">Delete</button>
     `)
 
@@ -39,7 +39,7 @@ const onViewTheardSuccess = function (data) {
     const line = (`
       <p class='comment-owner'>${comment.owner.email}</p>
       <p class='comment-content'>${comment.content}</p>
-      <button type="button" class="${comment._id}" id="edit-comment-button">Edit</button>
+      <button type="button" class="${comment._id}" id="edit-comment-button" data-toggle="modal" data-target="#edit-a-comment">Edit</button>
       <button type="button" class="${comment._id}" id="delete-comment-button">Delete</button>
       `)
     comments = comments + line
@@ -48,10 +48,13 @@ const onViewTheardSuccess = function (data) {
   // put everything together before show it to the users
   topic = '<div>' + topic + comments + '</div>'
   $('.single-thread').html(topic)
+  $('#message').text('')
 
   $('.threads').hide()
+  $('.new-thread').hide()
   $('.single-thread').show()
-  $('#message').text('')
+  $('.new-comment').show()
+  $('#go-back').show()
 }
 const onViewThreadFailure = function () {
   $('#message').text('The server is down, please come back at another time')
@@ -66,9 +69,10 @@ const onCreateThreadSuccess = function (data) {
     <p class='thread-content'>${thread.content}</p>
     `)
   $('#thread-create').trigger('reset')
+  $('#message-in-modal').text('You have successfully created a new post!!!!!!')
 }
 const onCreateThreadFailure = function () {
-  $('#message').text('The server is down, please come back at another time')
+  $('#message-in-modal').text('The server is down, please come back at another time')
 }
 
 const onCreateCommentSuccess = function (data) {
@@ -77,13 +81,14 @@ const onCreateCommentSuccess = function (data) {
   $('.single-thread').append(`
     <p class='comment-owner'>${store.user.email}</p>
     <p class='comment-content'>${comment.content}</p>
-    <button type="button" class="${comment._id}" id="edit-comment-button">Edit</button>
+    <button type="button" class="${comment._id}" id="edit-comment-button" data-toggle="modal" data-target="#edit-a-comment">Edit</button>
     <button type="button" class="${comment._id}" id="delete-comment-button">Delete</button>
     `)
   $('#comment-create').trigger('reset')
+  $('#message-in-modal').text('You have successfully posted a new comment!!!!!!')
 }
 const onCreateCommentFailure = function () {
-  $('#message').text('The server is down, please come back at another time')
+  $('#message-in-modal').text('The server is down, please come back at another time')
 }
 
 const onEditThreadSuccess = function (data) {
@@ -91,9 +96,11 @@ const onEditThreadSuccess = function (data) {
     .then(onViewTheardSuccess)
     .catch(onViewThreadFailure)
   $('#edit-thread').trigger('reset')
+
+  $('#message-in-modal').text('You have successfully editted your post')
 }
 const onEditThreadFailure = function () {
-  $('#message').text('Sorry but you are not the owner of this post')
+  $('#message-in-modal').text('Sorry but you are not the owner of this post')
 }
 
 const onEditCommentSuccess = function (data) {
@@ -102,13 +109,25 @@ const onEditCommentSuccess = function (data) {
     .catch(onViewThreadFailure)
   $('#edit-comment').trigger('reset')
   store.commentId = null
+
+  $('#message-in-modal').text('You have successfully editted your comment')
 }
 const onEditCommentFailure = function () {
-  $('#message').text('Sorry but you are not the owner of this comment')
+  $('#message-in-modal').text('Sorry but you are not the owner of this comment')
 }
 
 const onDeleteThreadSuccess = function () {
   store.threadId = null
+  api.getAll()
+    .then(onGetAllSuccess)
+    .catch(onGetAllFailure)
+  $('#message').text('You have successfully deleted your topic')
+
+  $('.threads').show()
+  $('.new-thread').show()
+  $('.single-thread').hide()
+  $('.new-comment').hide()
+  $('#go-back').hide()
 }
 const onDeleteThreadFailure = function () {
   $('#message').text('The server is down, please come back at another time')
@@ -116,9 +135,25 @@ const onDeleteThreadFailure = function () {
 
 const onDeleteCommentSuccess = function () {
   store.commentId = null
+  api.viewThread()
+    .then(onViewTheardSuccess)
+    .catch(onViewThreadFailure)
+  $('#message').text('You have successfully deleted your comment')
 }
 const onDeleteCommentFailure = function () {
   $('#message').text('The server is down, please come back at another time')
+}
+
+const onBackSuccess = function () {
+  api.getAll()
+    .then(onGetAllSuccess)
+    .catch(onGetAllFailure)
+
+  $('.threads').show()
+  $('.new-thread').show()
+  $('.single-thread').hide()
+  $('.new-comment').hide()
+  $('#go-back').hide()
 }
 
 module.exports = {
@@ -137,5 +172,6 @@ module.exports = {
   onDeleteThreadSuccess,
   onDeleteThreadFailure,
   onDeleteCommentSuccess,
-  onDeleteCommentFailure
+  onDeleteCommentFailure,
+  onBackSuccess
 }
