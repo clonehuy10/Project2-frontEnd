@@ -1,22 +1,25 @@
 'use strict'
 const store = require('./../store')
 const api = require('./api')
+const pagination = require('./../pagination/pagination')
 
 // show all thread on sign in
 const onGetAllSuccess = function (data) {
+  pagination.buildPagination(data.threads)
   let display = ''
   data.threads.forEach(thread => {
     const time = thread.createdAt.slice(0, 10)
     const line = (`
-      <a href="#" id="${thread._id}" class="thread-title">${thread.title}</a>
-      <p class='thread-owner'>Created by ${thread.owner.email} at ${time}</p>
-      <p class='thread-content'>${thread.content}</p>
+      <li class="list-group-item">
+        <a href="#" id="${thread._id}" class="thread-title">${thread.title}</a>
+        <p class='thread-owner'>Created by ${thread.owner.email} at ${time}</p>
+        <p class='thread-content'>${thread.content}</p>
+      </li>
       `)
     display = line + display
   })
-  display = '<div>' + display + '</div>'
+  display = '<ul class="list-group">' + display + '</ul>'
   $('.threads').html(display)
-  $('#thread-cread').trigger('reset')
 }
 const onGetAllFailure = function () {
   $('#message').text('The server is down, please come back at another time')
@@ -61,14 +64,11 @@ const onViewThreadFailure = function () {
 }
 
 const onCreateThreadSuccess = function (data) {
-  const thread = data.thread
-  const time = thread.createdAt.slice(0, 10)
-  $('.threads').prepend(`
-    <a href="#" id="${thread._id}" class="thread-title">${thread.title}</a>
-    <p class='thread-owner'>Created by ${store.user.email} at ${time}</p>
-    <p class='thread-content'>${thread.content}</p>
-    `)
+  api.getAll()
+    .then(onGetAllSuccess)
+    .catch(onGetAllFailure)
   $('#thread-create').trigger('reset')
+
   $('#message-in-modal').text('You have successfully created a new post!!!!!!')
 }
 const onCreateThreadFailure = function () {

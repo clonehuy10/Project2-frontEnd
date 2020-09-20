@@ -34,7 +34,9 @@
         <p class="text-white" id="message"></p>
 
         <!-- Create a thread -->
-        <button type="button" class="btn btn-secondary new-thread" data-toggle="modal" data-target="#create-a-thread">Create your story</button>
+        <div class="center-button row">
+          <button type="button" class="btn btn-secondary new-thread" data-toggle="modal" data-target="#create-a-thread">Create your story</button>
+        </div>
 
         <!-- Create a comment -->
         <button type="button" class="btn btn-secondary new-comment" data-toggle="modal" data-target="#create-a-comment">Comment</button>
@@ -51,11 +53,11 @@
             <form class="single-form" id="sign-up-form">
               <h3 class="text-white">Sign Up</h3>
               <label class="text-white" for="sign-up-email">Email</label><br>
-              <input class="input" id="sign-up-email" type="email" placeholder="example@email.com" name="credentials[email]"><br>
+              <input class="input sign" id="sign-up-email" type="email" placeholder="example@email.com" name="credentials[email]"><br>
               <label class="text-white" for="sign-up-password">Password</label><br>
-              <input class="input" id="sign-up-password" type="password" placeholder="********" name="credentials[password]"><br>
+              <input class="input sign" id="sign-up-password" type="password" placeholder="********" name="credentials[password]"><br>
               <label class="text-white" for="password-confirmation">Password Comfirmation</label><br>
-              <input class="input" id="password-confirmation" type="password" placeholder="********" name="credentials[password_confirmation]"><br><br>
+              <input class="input sign" id="password-confirmation" type="password" placeholder="********" name="credentials[password_confirmation]"><br><br>
               <input class="btn btn-primary pop" type="submit" value="Sign Up">
             </form>
           </div>
@@ -64,9 +66,9 @@
             <form class="single-form" id="sign-in-form">
               <h3 class="text-white">Sign In</h3>
               <label class="text-white" for="sign-in-email">Email</label><br>
-              <input class="input" id="sign-in-email" type="email" placeholder="example@email.com" name="credentials[email]"><br>
+              <input class="input sign" id="sign-in-email" type="email" placeholder="example@email.com" name="credentials[email]"><br>
               <label class="text-white" for="sign-in-password">Password</label><br>
-              <input class="input" id="sign-in-password" type="password" placeholder="********" name="credentials[password]"><br><br>
+              <input class="input sign" id="sign-in-password" type="password" placeholder="********" name="credentials[password]"><br><br>
               <input class="btn btn-primary pop" type="submit" value="Sign In">
             </form>
           </div>
@@ -76,10 +78,11 @@
       <!-- ================== Threads and comments ================== -->
       <div class="container">
         <!-- ================== List of threads ================== -->
-        <div class="threads"></div>
+        <div class="threads chat-box"></div>
+        <div class="pagination"></div>
 
         <!-- ================== Single thread with comments ================== -->
-        <div class="single-thread"></div>
+        <div class="single-thread chat-box"></div>
       </div>
 
       <!-- ================== Modals ================== -->
@@ -129,16 +132,16 @@
         <div class="modal-dialog">
 
           <!-- Modal content-->
-          <div class="modal-content">
+          <div class="modal-content create-box for-thread">
             <form id="thread-create">
               <div class="modal-body">
                 <label for="thread-title">Title</label><br>
-                <input class="input" id="thread-title" type="text" name="title"><br>
+                <input class="input create-title" id="thread-title" type="text" name="title"><br>
                 <label for="thread-content">Content</label><br>
-                <input class="input" id="thread-content" type="text" name="content">
+                <textarea class="input create-content" id="thread-content" name="content"></textarea>
               </div>
               <div class="modal-footer">
-                <input type="submit" value="Post" data-toggle="modal" data-target="#modal-message">
+                <input class="btn btn-primary" type="submit" value="Post" data-toggle="modal" data-target="#modal-message">
               </div>
             </form>
           </div>
@@ -152,14 +155,14 @@
         <div class="modal-dialog">
 
           <!-- Modal content-->
-          <div class="modal-content">
+          <div class="modal-content create-box for-comment">
             <form id="comment-create">
               <div class="modal-body">
                 <label for="comment-content">Content</label><br>
-                <input class="input" id="comment-content" type="text" name="content"><br>
+                <textarea class="input create-content" id="comment-content" name="content"></textarea>
               </div>
               <div class="modal-footer">
-                <input type="submit" value="Post" data-toggle="modal" data-target="#modal-message">
+                <input class="btn btn-primary" type="submit" value="Post" data-toggle="modal" data-target="#modal-message">
               </div>
             </form>
           </div>
@@ -173,13 +176,13 @@
         <div class="modal-dialog">
 
           <!-- Modal content-->
-          <div class="modal-content">
+          <div class="modal-content create-box for-thread">
             <form id="edit-thread">
               <div class="modal-body">
                 <label for="thread-title">Title</label><br>
                 <input class="input" id="edit-thread-title" type="text" name="title"><br>
                 <label for="thread-content">Content</label><br>
-                <input class="input" id="edit-thread-content" type="text" name="content">
+                <textarea class="input create-content" id="edit-thread-content" name="content"></textarea>
               </div>
               <div class="modal-footer">
                 <input type="submit" value="Post" data-toggle="modal" data-target="#modal-message">
@@ -196,11 +199,11 @@
         <div class="modal-dialog">
 
           <!-- Modal content-->
-          <div class="modal-content">
+          <div class="modal-content create-box for-comment">
             <form id="edit-comment">
               <div class="modal-body">
                 <label for="comment-content">Content</label><br>
-                <input class="input" id="edit-comment-content" type="text" name="content"><br>
+                <textarea class="input create-content" id="edit-comment-content" name="content"></textarea>
               </div>
               <div class="modal-footer">
                 <input type="submit" value="Post" data-toggle="modal" data-target="#modal-message">
