@@ -45,6 +45,7 @@ const onSignOutSuccess = function () {
   store.user = null
   store.commentId = null
   store.threadId = null
+  store.currentState = null
   $('#message').text('See you next time!!!!').fadeOut(5000)
 
   $('.sign-up-box').show()

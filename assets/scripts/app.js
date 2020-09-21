@@ -35,4 +35,6 @@ $(() => {
   $('.single-thread').on('click', '.delete-thread', threadEvents.onDeleteThread)
   $('.single-thread').on('click', '.delete-comment-button', threadEvents.onDeleteComment)
   $('#go-back').on('click', threadEvents.onBack)
+
+  $('.pagination').on('click', '.links', threadEvents.onPagination)
 })

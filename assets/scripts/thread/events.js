@@ -3,6 +3,8 @@ const getFormFields = require('./../../../lib/get-form-fields')
 const store = require('./../store')
 const api = require('./api')
 const ui = require('./ui')
+const buildPage = require('./../pagination/buildPage')
+const buildSingleThread = require('./../pagination/buildSingleThread')
 
 const getAllThreads = function () {
   api.getAll()
@@ -83,6 +85,15 @@ const onBack = function (event) {
   event.preventDefault()
   ui.onBackSuccess()
 }
+const onPagination = function () {
+  store.currentState.page = parseInt(event.target.id)
+
+  if (store.threadId) {
+    buildSingleThread.buildSingleThread(store.currentState.database)
+  } else {
+    buildPage.buildPage(store.currentState.database)
+  }
+}
 
 module.exports = {
   getAllThreads,
@@ -95,5 +106,6 @@ module.exports = {
   onEditComment,
   onDeleteThread,
   onDeleteComment,
-  onBack
+  onBack,
+  onPagination
 }

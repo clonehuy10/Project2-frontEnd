@@ -6,7 +6,16 @@ const buildSingleThread = require('./../pagination/buildSingleThread')
 
 // show all thread on sign in
 const onGetAllSuccess = function (data) {
-  buildPage.buildPage(data.threads)
+  store.currentState = {
+    database: data.threads.reverse(),
+    page: 1,
+    limit: 5,
+    minPage: 1,
+    numberOfPage: 0,
+    pageLimit: 5
+  }
+
+  buildPage.buildPage(store.currentState.database)
   $('.pagination').show()
 }
 const onGetAllFailure = function () {
@@ -14,7 +23,9 @@ const onGetAllFailure = function () {
 }
 
 const onViewTheardSuccess = function (data) {
-  buildSingleThread.buildSingleThread(data.thread)
+  store.currentState.database = data.thread
+
+  buildSingleThread.buildSingleThread(store.currentState.database)
   $('#message').text('')
 
   $('.threads').hide()
@@ -64,11 +75,11 @@ const onEditThreadFailure = function () {
 }
 
 const onEditCommentSuccess = function (data) {
+  store.commentId = null
   api.viewThread()
     .then(onViewTheardSuccess)
     .catch(onViewThreadFailure)
   $('#edit-comment').trigger('reset')
-  store.commentId = null
 
   $('#message-in-modal').text('You have successfully editted your comment')
 }
@@ -105,6 +116,8 @@ const onDeleteCommentFailure = function () {
 }
 
 const onBackSuccess = function () {
+  store.threadId = null
+
   api.getAll()
     .then(onGetAllSuccess)
     .catch(onGetAllFailure)
