@@ -19,7 +19,8 @@ const onGetAllSuccess = function (data) {
   $('.pagination').show()
 }
 const onGetAllFailure = function () {
-  $('#message').text('The server is down, please come back at another time').fadeOut(5000)
+
+  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
 }
 
 const onViewTheardSuccess = function (data) {
@@ -35,7 +36,8 @@ const onViewTheardSuccess = function (data) {
   $('#go-back').show()
 }
 const onViewThreadFailure = function () {
-  $('#message').text('The server is down, please come back at another time').fadeOut(5000)
+
+  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
 }
 
 const onCreateThreadSuccess = function (data) {
@@ -92,7 +94,8 @@ const onDeleteThreadSuccess = function () {
   api.getAll()
     .then(onGetAllSuccess)
     .catch(onGetAllFailure)
-  $('#message').text('You have successfully deleted your topic').fadeOut(5000)
+
+  $('#message').text('You have successfully deleted your topic').fadeIn(3000).fadeOut(3000)
 
   $('.threads').show()
   $('.new-thread').show()
@@ -101,7 +104,8 @@ const onDeleteThreadSuccess = function () {
   $('#go-back').hide()
 }
 const onDeleteThreadFailure = function () {
-  $('#message').text('The server is down, please come back at another time').fadeOut(5000)
+
+  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
 }
 
 const onDeleteCommentSuccess = function () {
@@ -109,10 +113,12 @@ const onDeleteCommentSuccess = function () {
   api.viewThread()
     .then(onViewTheardSuccess)
     .catch(onViewThreadFailure)
-  $('#message').text('You have successfully deleted your comment').fadeOut(5000)
+
+  $('#message').text('You have successfully deleted your comment').fadeIn(3000).fadeOut(3000)
 }
 const onDeleteCommentFailure = function () {
-  $('#message').text('The server is down, please come back at another time').fadeOut(5000)
+
+  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
 }
 
 const onBackSuccess = function () {

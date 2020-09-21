@@ -9,6 +9,7 @@ const userEvents = require('./auth/events')
 const threadEvents = require('./thread/events')
 
 // hide on load
+$('#message').hide()
 $('.setting').hide()
 $('.threads').hide()
 $('.single-thread').hide()
