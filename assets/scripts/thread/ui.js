@@ -1,64 +1,20 @@
 'use strict'
 const store = require('./../store')
 const api = require('./api')
-// const pagination = require('./../pagination/pagination')
+const buildPage = require('./../pagination/buildPage')
+const buildSingleThread = require('./../pagination/buildSingleThread')
 
 // show all thread on sign in
 const onGetAllSuccess = function (data) {
-  // pagination.buildPagination(data.threads)
-  let display = ''
-  data.threads.forEach(thread => {
-    const time = thread.createdAt.slice(0, 10)
-    const line = (`
-      <li class="list-group-item border border-info">
-        <a href="#" id="${thread._id}" class="thread-title">${thread.title}</a>
-        <p class='thread-owner'><small>Created by ${thread.owner.email} at ${time}</small></p>
-      </li>
-      `)
-    display = line + display
-  })
-  display = '<ul class="list-group">' + display + '</ul>'
-  $('.threads').html(display)
+  buildPage.buildPage(data.threads)
+  $('.pagination').show()
 }
 const onGetAllFailure = function () {
-  $('#message').text('The server is down, please come back at another time')
+  $('#message').text('The server is down, please come back at another time').fadeOut(5000)
 }
 
 const onViewTheardSuccess = function (data) {
-  const thread = data.thread
-  // get the topic
-  let topic = (`
-    <h3 class='thread-title text-white'>${thread.title}</h3>
-    <li class="list-group-item border border-info">
-      <p class='thread-owner'>${thread.owner.email}</p>
-      <p class='thread-content'>${thread.content}</p><br>
-      <div class="btn-group float-right">
-        <button type="button" class="btn btn-outline-primary edit-thread-button" data-toggle="modal" data-target="#edit-a-thread">Edit</button>
-        <button type="button" class="btn btn-outline-danger delete-thread">Delete</button>
-      </div>
-    </li>
-    `)
-
-  let comments = ''
-
-  // get all the comments
-  thread.comments.forEach(comment => {
-    const line = (`
-      <li class="list-group-item border border-info">
-        <p class='comment-owner'>${comment.owner.email}</p>
-        <p class='comment-content'>${comment.content}</p>
-        <div class="btn-group float-right">
-          <button type="button" class="btn btn-outline-primary edit-comment-button" value="${comment._id}" data-toggle="modal" data-target="#edit-a-comment">Edit</button>
-          <button type="button" class="btn btn-outline-danger delete-comment-button" value="${comment._id}">Delete</button>
-        </div>
-      </li>
-      `)
-    comments = comments + line
-  })
-
-  // put everything together before show it to the users
-  topic = '<ul class="list-group">' + topic + comments + '</ul>'
-  $('.single-thread').html(topic)
+  buildSingleThread.buildSingleThread(data.thread)
   $('#message').text('')
 
   $('.threads').hide()
@@ -68,7 +24,7 @@ const onViewTheardSuccess = function (data) {
   $('#go-back').show()
 }
 const onViewThreadFailure = function () {
-  $('#message').text('The server is down, please come back at another time')
+  $('#message').text('The server is down, please come back at another time').fadeOut(5000)
 }
 
 const onCreateThreadSuccess = function (data) {
@@ -125,7 +81,7 @@ const onDeleteThreadSuccess = function () {
   api.getAll()
     .then(onGetAllSuccess)
     .catch(onGetAllFailure)
-  $('#message').text('You have successfully deleted your topic')
+  $('#message').text('You have successfully deleted your topic').fadeOut(5000)
 
   $('.threads').show()
   $('.new-thread').show()
@@ -134,7 +90,7 @@ const onDeleteThreadSuccess = function () {
   $('#go-back').hide()
 }
 const onDeleteThreadFailure = function () {
-  $('#message').text('The server is down, please come back at another time')
+  $('#message').text('The server is down, please come back at another time').fadeOut(5000)
 }
 
 const onDeleteCommentSuccess = function () {
@@ -142,10 +98,10 @@ const onDeleteCommentSuccess = function () {
   api.viewThread()
     .then(onViewTheardSuccess)
     .catch(onViewThreadFailure)
-  $('#message').text('You have successfully deleted your comment')
+  $('#message').text('You have successfully deleted your comment').fadeOut(5000)
 }
 const onDeleteCommentFailure = function () {
-  $('#message').text('The server is down, please come back at another time')
+  $('#message').text('The server is down, please come back at another time').fadeOut(5000)
 }
 
 const onBackSuccess = function () {

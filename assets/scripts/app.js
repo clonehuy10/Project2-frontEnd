@@ -15,6 +15,7 @@ $('.single-thread').hide()
 $('.new-thread').hide()
 $('.new-comment').hide()
 $('#go-back').hide()
+$('.pagination').hide()
 
 $(() => {
   $('#sign-up-form').on('submit', userEvents.onSignUp)

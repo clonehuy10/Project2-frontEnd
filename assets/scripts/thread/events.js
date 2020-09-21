@@ -51,7 +51,6 @@ const onEditThread = function (event) {
 }
 const onEditCommentButton = function (event) {
   event.preventDefault()
-  console.log(event.target.value)
   store.commentId = event.target.value
 }
 const onEditComment = function (event) {

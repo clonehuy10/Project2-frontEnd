@@ -24,6 +24,9 @@
 
             <!-- ================== Sign out ================== -->
             <li><button type="button" class="btn btn-default" id="sign-out">Sign Out</button></li>
+
+            <!-- ================== Guide ================== -->
+            <li><button type="button" class="btn btn-default" data-toggle="modal" data-target="#guide-box">Guide</button></li>
           </ul>
         </div>
 
@@ -76,9 +79,11 @@
 
       <!-- ================== Threads and comments ================== -->
       <div class="container">
+        <!-- ================== Pagination ================== -->
+        <div class="btn-group pagination"></div>
+
         <!-- ================== List of threads ================== -->
         <div class="threads chat-box"></div>
-        <div class="pagination"></div>
 
         <!-- ================== Single thread with comments ================== -->
         <div class="single-thread chat-box"></div>
@@ -218,6 +223,32 @@
             </form>
           </div>
 
+
+        </div>
+      </div>
+
+      <!-- Modal for guide -->
+      <div class="modal fade" id="guide-box" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-head">
+              <h3>How to post Youtube videos</h3>
+            </div>
+            <div class="modal-body">
+              <p>1. Go to Youtube and pick a video you like</p>
+              <p>2. Copy the special key for the video</p>
+              <p>-----watch?v=&lt;HERE"&gt;-----</p>
+              <p>3. Paste it into &lt;YOUR KEY GO HERE"&gt; in the code below</p>
+              <p>&lt;iframe src="https://www.youtube.com/embed/< YOUR KEY GO HERE >"&gt;&lt;/iframe"&gt;</p>
+              <p>4. Put the code with your key in it to the post cotent</p>
+              <p>Example: <br>&lt;iframe src="https://www.youtube.com/embed/Os4Zztck0Ek"&gt;&lt;/iframe&gt;
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
 
         </div>
       </div>

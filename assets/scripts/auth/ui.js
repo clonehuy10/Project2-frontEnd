@@ -4,18 +4,18 @@ const threadEvents = require('./../thread/events')
 
 // Sign up new account
 const onSignUpSuccess = function (response) {
-  $('#message').text('Thanks for signing up ' + response.user.email)
+  $('#message').text('Thanks for signing up ' + response.user.email).fadeOut(5000)
   $('#sign-up-form').trigger('reset')
 }
 const onSignUpFailure = function () {
-  $('#message').text('Sign up failed, please try again')
+  $('#message').text('Sign up failed, please try again').fadeOut(5000)
   $('#sign-up-form').trigger('reset')
 }
 
 // Sign in
 const onSignInSuccess = function (response) {
   store.user = response.user
-  $('#message').text('Thanks for signing in ' + response.user.email)
+  $('#message').text('Thanks for signing in ' + response.user.email).fadeOut(5000)
   $('#sign-in-form').trigger('reset')
   threadEvents.getAllThreads()
 
@@ -26,7 +26,7 @@ const onSignInSuccess = function (response) {
   $('.new-thread').show()
 }
 const onSignInFailure = function () {
-  $('#message').text('Sign in failed, please try again')
+  $('#message').text('Sign in failed, please try again').fadeOut(5000)
   $('#sign-in-form').trigger('reset')
 }
 
@@ -45,16 +45,17 @@ const onSignOutSuccess = function () {
   store.user = null
   store.commentId = null
   store.threadId = null
-  $('#message').text('See you next time!!!!')
+  $('#message').text('See you next time!!!!').fadeOut(5000)
 
   $('.sign-up-box').show()
   $('.sign-in-box').show()
   $('.setting').hide()
   $('.threads').hide()
   $('.new-thread').hide()
+  $('.pagination').hide()
 }
 const onSignOutFailure = function () {
-  $('#message').text('Failed to sign out!!!!')
+  $('#message').text('Failed to sign out!!!!').fadeOut(5000)
 }
 
 module.exports = {
