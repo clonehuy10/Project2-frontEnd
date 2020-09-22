@@ -19,7 +19,6 @@ const onGetAllSuccess = function (data) {
   $('.pagination').show()
 }
 const onGetAllFailure = function () {
-
   $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
 }
 
@@ -36,7 +35,6 @@ const onViewTheardSuccess = function (data) {
   $('#go-back').show()
 }
 const onViewThreadFailure = function () {
-
   $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
 }
 
@@ -104,7 +102,6 @@ const onDeleteThreadSuccess = function () {
   $('#go-back').hide()
 }
 const onDeleteThreadFailure = function () {
-
   $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
 }
 
@@ -117,7 +114,6 @@ const onDeleteCommentSuccess = function () {
   $('#message').text('You have successfully deleted your comment').fadeIn(3000).fadeOut(3000)
 }
 const onDeleteCommentFailure = function () {
-
   $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
 }
 

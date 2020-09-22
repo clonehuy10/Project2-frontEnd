@@ -56,6 +56,9 @@ const onSignOutSuccess = function () {
   $('.threads').hide()
   $('.new-thread').hide()
   $('.pagination').hide()
+  $('.single-thread').hide()
+  $('.new-comment').hide()
+  $('#go-back').hide()
 }
 const onSignOutFailure = function () {
   $('#message').text('Failed to sign out!!!!').fadeIn(3000).fadeOut(3000)
