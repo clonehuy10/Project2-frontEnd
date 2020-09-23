@@ -19,7 +19,7 @@ const onGetAllSuccess = function (data) {
   $('.pagination').show()
 }
 const onGetAllFailure = function () {
-  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
+  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(1000)
 }
 
 const onViewTheardSuccess = function (data) {
@@ -35,7 +35,7 @@ const onViewTheardSuccess = function (data) {
   $('#go-back').show()
 }
 const onViewThreadFailure = function () {
-  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
+  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(1000)
 }
 
 const onCreateThreadSuccess = function (data) {
@@ -93,7 +93,7 @@ const onDeleteThreadSuccess = function () {
     .then(onGetAllSuccess)
     .catch(onGetAllFailure)
 
-  $('#message').text('You have successfully deleted your topic').fadeIn(3000).fadeOut(3000)
+  $('#message').text('You have successfully deleted your topic').fadeIn(3000).fadeOut(1000)
 
   $('.threads').show()
   $('.new-thread').show()
@@ -102,7 +102,7 @@ const onDeleteThreadSuccess = function () {
   $('#go-back').hide()
 }
 const onDeleteThreadFailure = function () {
-  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
+  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(1000)
 }
 
 const onDeleteCommentSuccess = function () {
@@ -111,10 +111,10 @@ const onDeleteCommentSuccess = function () {
     .then(onViewTheardSuccess)
     .catch(onViewThreadFailure)
 
-  $('#message').text('You have successfully deleted your comment').fadeIn(3000).fadeOut(3000)
+  $('#message').text('You have successfully deleted your comment').fadeIn(3000).fadeOut(1000)
 }
 const onDeleteCommentFailure = function () {
-  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(3000)
+  $('#message').text('The server is down, please come back at another time').fadeIn(3000).fadeOut(1000)
 }
 
 const onBackSuccess = function () {

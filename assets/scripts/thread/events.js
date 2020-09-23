@@ -74,7 +74,7 @@ const onDeleteThread = function (event) {
 }
 const onDeleteComment = function (event) {
   event.preventDefault()
-  store.commentId = event.target.classList.value
+  store.commentId = event.target.value
 
   api.deleteComment()
     .then(ui.onDeleteCommentSuccess)
