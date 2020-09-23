@@ -23,7 +23,14 @@ const onGetAllFailure = function () {
 }
 
 const onViewTheardSuccess = function (data) {
-  store.currentState.database = data.thread
+  store.currentState = {
+    database: data.thread,
+    page: 1,
+    limit: 5,
+    minPage: 1,
+    numberOfPage: 0,
+    pageLimit: 5
+  }
 
   buildSingleThread.buildSingleThread(store.currentState.database)
   $('#message').text('')

@@ -42,11 +42,19 @@ const makeButtons = function (pages) {
   // create button
   let buttons = ''
   for (let i = storeData.minPage; i <= maxPage; i++) {
-    const line = (`
-      <li class="page-item"><a class="page-link links" id="${i}" href="#">${i}</a></li>
-      `)
-    buttons = buttons + line
+    if (i === storeData.page) {
+      const line = (`
+        <li class="page-item active"><a class="page-link links" id="${i}" href="#">${i}</a></li>
+        `)
+      buttons = buttons + line
+    } else {
+      const line = (`
+        <li class="page-item"><a class="page-link links" id="${i}" href="#">${i}</a></li>
+        `)
+      buttons = buttons + line
+    }
   }
+
   // create previous, next, first, last buttons
   let previous = ''
   let next = ''

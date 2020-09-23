@@ -18,6 +18,7 @@ const onSignInSuccess = function (response) {
 
   $('#message').text('Thanks for signing in ' + response.user.email).fadeIn(3000).fadeOut(1000)
   $('#sign-in-form').trigger('reset')
+  $('.setting').text(response.user.email)
   threadEvents.getAllThreads()
 
   $('.sign-up-box').hide()
