@@ -12,33 +12,41 @@ const buildSingleThread = function (data) {
   // ---------- create table of contents ----------
 
   // get the topic
-  let topic = (`
-    <h3 class='thread-title text-white'>${data.title}</h3>
-    <li class="list-group-item box">
+  let topic = (`<h3 class='thread-title text-white'>${data.title}</h3>`)
+  const topicContent = (`
       <p class='thread-owner'>${data.owner.email}</p>
       <p class='thread-content'>${data.content}</p><br>
-      <div class="btn-group float-right">
-        <button type="button" class="btn btn-outline-primary edit-thread-button" data-toggle="modal" data-target="#edit-a-thread">Edit</button>
-        <button type="button" class="btn btn-outline-danger delete-thread">Delete</button>
-      </div>
-    </li>
     `)
+  let topicButton = ''
+  if (store.user.email === data.owner.email) {
+    topicButton = (`
+    <div class="btn-group float-right">
+      <button type="button" class="btn btn-outline-primary edit-thread-button" data-toggle="modal" data-target="#edit-a-thread">Edit</button>
+      <button type="button" class="btn btn-outline-danger delete-thread">Delete</button>
+    </div>
+    `)
+  }
 
-  let comments = ''
+  topic += '<li class="list-group-item box">' + topicContent + topicButton + '</li>'
 
   // get all the comments
+  let comments = ''
+
   currentPage.forEach(comment => {
     const line = (`
-      <li class="list-group-item box">
         <p class='comment-owner'>${comment.owner.email}</p>
         <p class='comment-content'>${comment.content}</p>
+      `)
+    let buttons = ''
+    if (store.user.email === comment.owner.email) {
+      buttons = (`
         <div class="btn-group float-right">
           <button type="button" class="btn btn-outline-primary edit-comment-button" value="${comment._id}" data-toggle="modal" data-target="#edit-a-comment">Edit</button>
           <button type="button" class="btn btn-outline-danger delete-comment-button" value="${comment._id}">Delete</button>
         </div>
-      </li>
-      `)
-    comments = comments + line
+        `)
+    }
+    comments = comments + '<li class="list-group-item box">' + line + buttons + '</li>'
   })
 
   // put everything together before show it to the users

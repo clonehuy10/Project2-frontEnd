@@ -78,6 +78,7 @@ const onEditThreadSuccess = function (data) {
   $('#message-in-modal').text('You have successfully editted your post')
 }
 const onEditThreadFailure = function () {
+  $('#edit-thread').trigger('reset')
   $('#message-in-modal').text('Sorry but you are not the owner of this post')
 }
 
@@ -91,6 +92,7 @@ const onEditCommentSuccess = function (data) {
   $('#message-in-modal').text('You have successfully editted your comment')
 }
 const onEditCommentFailure = function () {
+  $('#edit-comment').trigger('reset')
   $('#message-in-modal').text('Sorry but you are not the owner of this comment')
 }
 
