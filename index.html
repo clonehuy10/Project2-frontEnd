@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Fakebook</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <!-- ================== Top ================== -->
+      <section class="container">
+        <!-- Dropdown -->
+        <div class="dropdown">
+          <button class="dropdown-toggle float-right btn btn-default text-white setting" type="button" data-toggle="dropdown">Setting</button>
+          <ul class="dropdown-menu">
+
+            <!-- ================== Change password ================== -->
+            <li><button type="button" class="btn btn-default" data-toggle="modal" data-target="#change-password-box">Change-Password</button></li>
+
+            <!-- ================== Sign out ================== -->
+            <li><button type="button" class="btn btn-default" id="sign-out">Sign Out</button></li>
+
+            <!-- ================== Guide ================== -->
+            <li><button type="button" class="btn btn-default" data-toggle="modal" data-target="#guide-box">Guide</button></li>
+          </ul>
+        </div>
+
+        <!-- Web name -->
+        <h1 class="text-white">ʞooqǝʞɐℲ</h1>
+
+        <!-- Message -->
+        <p class="text-white" id="message"></p>
+
+        <!-- Create a thread -->
+        <div class="move-button row">
+          <button type="button" class="btn btn-info new-thread" data-toggle="modal" data-target="#create-a-thread">Create your story</button>
+        </div>
+
+        <!-- Back to list of threads -->
+        <div class="move-button row">
+          <button type="button" class="btn btn-info" id="go-back">Back</button>
+        </div>
+
+      </section>
+
+      <!-- ================== Sign in/Sign up forms ================== -->
+      <section class="container-fluid">
+        <div class="row form">
+          <!-- ================== Sign up ================== -->
+          <div class="col-xs-5 form sign-up-box">
+            <form class="single-form" id="sign-up-form">
+              <h3 class="text-white">Sign Up</h3>
+              <label class="text-white" for="sign-up-email">Email</label><br>
+              <input class="input sign" id="sign-up-email" type="email" placeholder="example@email.com" name="credentials[email]"><br>
+              <label class="text-white" for="sign-up-password">Password</label><br>
+              <input class="input sign" id="sign-up-password" type="password" placeholder="********" name="credentials[password]"><br>
+              <label class="text-white" for="password-confirmation">Password Comfirmation</label><br>
+              <input class="input sign" id="password-confirmation" type="password" placeholder="********" name="credentials[password_confirmation]"><br><br>
+              <input class="btn btn-primary pop" type="submit" value="Sign Up">
+            </form>
+          </div>
+          <!-- ================== Sign in ================== -->
+          <div class="col-xs-5 form sign-in-box">
+            <form class="single-form" id="sign-in-form">
+              <h3 class="text-white">Sign In</h3>
+              <label class="text-white" for="sign-in-email">Email</label><br>
+              <input class="input sign" id="sign-in-email" type="email" placeholder="example@email.com" name="credentials[email]"><br>
+              <label class="text-white" for="sign-in-password">Password</label><br>
+              <input class="input sign" id="sign-in-password" type="password" placeholder="********" name="credentials[password]"><br><br>
+              <input class="btn btn-primary pop" type="submit" value="Sign In">
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================== Threads and comments ================== -->
+      <div class="container">
+        <!-- ================== Pagination ================== -->
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+          </ul>
+        </nav>
+
+        <!-- ================== List of threads ================== -->
+        <div class="threads chat-box"></div>
+
+        <!-- ================== Single thread with comments ================== -->
+        <div class="single-thread chat-box"></div>
+      </div>
+
+      <!-- ================== Bottom ================== -->
+      <section class="container">
+        <!-- Create a comment -->
+        <div class="move-button row">
+          <button type="button" class="btn btn-info new-comment" data-toggle="modal" data-target="#create-a-comment">Comment</button>
+        </div>
+      </section>
+
+      <!-- ================== Modals ================== -->
+      <!-- Modal for message -->
+      <div class="modal fade" id="modal-message" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body" id="message-in-modal"></div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Modal for change password -->
+      <div class="modal fade" id="change-password-box" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Change Password</h4>
+              <button type="button" class="close" data-dismiss="modal">x</button>
+            </div>
+            <form id="change-password">
+              <div class="modal-body">
+                <label for="old-password">Old Password</label><br>
+                <input class="input" id="old-password" type="password" placeholder="********" name="passwords[old]"><br>
+                <label for="new-password">New Password</label><br>
+                <input class="input" id="new-password" type="password" placeholder="********" name="passwords[new]">
+              </div>
+              <div class="modal-footer">
+                <input type="submit" value="Change Password" data-toggle="modal" data-target="#modal-message">
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Modal for create a thread -->
+      <div class="modal fade" id="create-a-thread" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content create-box for-thread">
+            <form id="thread-create">
+              <div class="modal-body">
+                <label for="thread-title">Title</label><br>
+                <input class="input create-title" id="thread-title" type="text" name="title"><br>
+                <label for="thread-content">Content</label><br>
+                <textarea class="input create-content" id="thread-content" name="content"></textarea>
+              </div>
+              <div class="modal-footer">
+                <input class="btn btn-primary" type="submit" value="Post" data-toggle="modal" data-target="#modal-message">
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Modal for create a comment -->
+      <div class="modal fade" id="create-a-comment" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content create-box for-comment">
+            <form id="comment-create">
+              <div class="modal-body">
+                <label for="comment-content">Content</label><br>
+                <textarea class="input create-content" id="comment-content" name="content"></textarea>
+              </div>
+              <div class="modal-footer">
+                <input class="btn btn-primary" type="submit" value="Post" data-toggle="modal" data-target="#modal-message">
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Modal for edit a thread -->
+      <div class="modal fade" id="edit-a-thread" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content create-box for-thread">
+            <form id="edit-thread">
+              <div class="modal-body">
+                <label for="thread-title">Title</label><br>
+                <input class="input create-title" id="edit-thread-title" type="text" name="title"><br>
+                <label for="thread-content">Content</label><br>
+                <textarea class="input create-content" id="edit-thread-content" name="content"></textarea>
+              </div>
+              <div class="modal-footer">
+                <input type="submit" value="Post" data-toggle="modal" data-target="#modal-message">
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Modal for edit a comment -->
+      <div class="modal fade" id="edit-a-comment" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content create-box for-comment">
+            <form id="edit-comment">
+              <div class="modal-body">
+                <label for="comment-content">Content</label><br>
+                <textarea class="input create-content" id="edit-comment-content" name="content"></textarea>
+              </div>
+              <div class="modal-footer">
+                <input type="submit" value="Post" data-toggle="modal" data-target="#modal-message">
+              </div>
+            </form>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Modal for guide -->
+      <div class="modal fade" id="guide-box" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-head">
+              <h3>How to post Youtube videos</h3>
+            </div>
+            <div class="modal-body">
+              <p>1. Go to Youtube and pick a video you like</p>
+              <p>2. Copy the special key for the video</p>
+              <p>-----watch?v=&lt;HERE"&gt;-----</p>
+              <p>3. Paste it into &lt;YOUR KEY GO HERE"&gt; in the code below</p>
+              <p>&lt;iframe src="https://www.youtube.com/embed/< YOUR KEY GO HERE >" width="560" height="315" frameborder="0"&gt;&lt;/iframe"&gt;</p>
+              <p>4. Put the code with your key in it to the post cotent</p>
+              <p>Example: <br>&lt;iframe src="https://www.youtube.com/embed/Os4Zztck0Ek" width="560" height="315" frameborder="0"&gt;&lt;/iframe&gt;
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </body>
+</html>
